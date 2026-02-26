@@ -1,45 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/model/model_movie.dart';
+import 'package:my_app/widget/box_slider.dart';
+import 'package:my_app/widget/carousel_slide.dart';
+import 'package:my_app/widget/circle_slider.dart';
 
 class HomeScreen extends StatelessWidget {
+  final List<Movie> movies = [
+    Movie(
+      title: 'The Glory',
+      keyword: '복수, 드라마',
+      poster: 'https://via.placeholder.com/300x400',
+    ),
+    Movie(
+      title: 'Squid Game',
+      keyword: '서바이벌, 스릴러',
+      poster: 'https://via.placeholder.com/300x400',
+    ),
+    Movie(
+      title: 'Kingdom',
+      keyword: '좀비, 사극',
+      poster: 'https://via.placeholder.com/300x400',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'NETFLIX',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text('TV 프로그램'),
-                      SizedBox(width: 10),
-                      Text('영화'),
-                      SizedBox(width: 10),
-                      Text('내가 찜한 콘텐츠'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Text('홈 화면', style: TextStyle(color: Colors.white)),
-              ),
-            ),
-          ],
-        ),
+      body: ListView(
+        children: [
+          CarouseImage(movies: movies),
+          CircleSlider(movies: movies),
+          BoxSlider(movies: movies),
+        ],
       ),
     );
   }
