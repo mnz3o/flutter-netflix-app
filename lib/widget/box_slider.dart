@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/model/model_movie.dart';
+import 'package:my_app/screen/detail_screen.dart';
 
 class BoxSlider extends StatelessWidget {
   final List<Movie> movies;
@@ -20,9 +21,19 @@ class BoxSlider extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: movies
                   .map(
-                    (movie) => Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: Image.network(movie.poster),
+                    (movie) => InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => DetailScreen(movie: movie),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Image.network(movie.poster),
+                      ),
                     ),
                   )
                   .toList(),
