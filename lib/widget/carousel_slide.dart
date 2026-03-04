@@ -10,10 +10,13 @@ class CarouseImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-      items: movies
-          .map((movie) => Image.network(movie.poster, fit: BoxFit.cover))
-          .toList(),
-      options: CarouselOptions(height: 300),
+      items: movies.map((movie) => Image.network(movie.poster)).toList(),
+      options: CarouselOptions(
+        height: 300,
+        viewportFraction: 1.0,
+        enlargeCenterPage: false,
+        autoPlay: true,
+      ),
     );
   }
 }
